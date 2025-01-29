@@ -1,0 +1,31 @@
+<h1>Upload a Document</h1>
+<div data-controller="pdf-viewer">
+  <%= form_with model: @document, local: true do |form| %>
+    <p>
+      <%= form.label :name %><br>
+      <%= form.text_field :name %>
+    </p>
+    <p>
+      <%= form.label :file %><br>
+      <%= form.file_field :file, data: { action: "change->pdf-viewer#loadPdf", pdf_viewer_target: "fileInput" } %>
+    </p>
+    <p>
+      <%= form.submit 'Upload Document' %>
+    </p>
+  <% end %>
+
+  <h2>Preview</h2>
+  <div>
+    <canvas data-pdf-viewer-target="canvas"></canvas>
+  </div>
+
+  <!-- Draggable signature field -->
+  <div
+    id="signature-field"
+    draggable="true"
+    class="signature-field"
+    style="width: 100px; height: 50px; background: rgba(0, 0, 255, 0.3); text-align: center; line-height: 50px; cursor: grab;"
+    data-action="dragstart->pdf-viewer#startDrag">
+    Signature
+  </div>
+</div>

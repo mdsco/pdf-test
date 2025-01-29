@@ -1,0 +1,12 @@
+<h1>Uploaded Documents</h1>
+<% @documents.each do |document| %>
+  <div>
+    <p><strong>Name:</strong> <%= document.name %></p>
+    <% if document.file.attached? %>
+      <p>
+        <strong>File:</strong>
+        <%= link_to 'Download', rails_blob_path(document.file, disposition: 'attachment') %>
+      </p>
+    <% end %>
+  </div>
+<% end %>
