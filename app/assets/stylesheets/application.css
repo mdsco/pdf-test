@@ -13,3 +13,34 @@
  *= require_tree .
  *= require_self
  */
+
+#pdf-html-preview #page-container {
+  position: static;
+  padding: 10px 20px;
+  width: fit-content;
+}
+
+#toolbox {
+  width: 250px;
+  font-size: 22px;
+  padding: 20px;
+  border: 1px solid #222;
+  background-color: #eee;
+}
+
+#toolbox p {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+#sidebar {
+  display: none;
+}
+
+.draggable-field {
+  background-color: blue;
+  font-size: 16px;
+  color: white;
+  border-color: black;
+  padding: 5px 10px;
+}

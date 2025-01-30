@@ -1,0 +1,16 @@
+<h1>Document: <%= @document.name %></h1>
+
+<% if @document.html_path.present? %>
+  <h2>Generated HTML Preview</h2>
+  <div style="display: flex; gap: 20px;">
+    <div id="toolbox">
+      <p>TOOLBOX</p>
+      <span class="draggable-field">Signachurro</span>
+    </div>
+    <div id="pdf-html-preview">
+      <%= raw(File.read(Rails.root.join("public", "uploads", @document.html_path))) %>
+    </div>
+  </div>
+<% else %>
+  <p>No HTML version available.</p>
+<% end %>
