@@ -6,7 +6,10 @@ const application = Application.start()
 application.debug = false
 window.Stimulus   = application
 
-import PdfViewerController from "./pdf_viewer_controller";
-application.register("pdf-viewer", PdfViewerController);
+import DragDropController from "./drag_drop_controller";
+application.register("drag-drop", DragDropController);
+
+import SaveHtmlController from "./save_html_controller";
+application.register("save-html", SaveHtmlController);
 
 export { application }

@@ -2,12 +2,16 @@
 
 <% if @document.html_path.present? %>
   <h2>Generated HTML Preview</h2>
-  <div style="display: flex; gap: 20px;">
+  <div style="display: flex; gap: 20px;" data-controller="drag-drop save-html">
+    
     <div id="toolbox">
       <p>TOOLBOX</p>
-      <span class="draggable-field">Signachurro</span>
+      <span class="draggable-field signature" data-action="mousedown->drag-drop#startDrag">Signature</span>
+      <span class="draggable-field date" data-action="mousedown->drag-drop#startDrag">Date</span>
+      <button data-action="click->save-html#saveHtml" data-save-html-document-id="<%= @document.id %>">Save</button>
     </div>
-    <div id="pdf-html-preview">
+
+    <div id="pdf-html-preview" data-drag-drop-target="pdfPreview" data-save-html-target="pdfPreview">
       <%= raw(File.read(Rails.root.join("public", "uploads", @document.html_path))) %>
     </div>
   </div>

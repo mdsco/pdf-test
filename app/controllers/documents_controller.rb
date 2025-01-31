@@ -23,6 +23,17 @@ class DocumentsController < ApplicationController
     @document = Document.find(params[:id])
   end
 
+  def update_html
+    @document = Document.find(params[:id])
+
+    html_path = Rails.root.join("public", "uploads", @document.html_path)
+    File.write(html_path, params[:html])  # Overwrite the file with new HTML
+
+    render json: { status: "ok" }
+  rescue StandardError => e
+    render json: { status: "error", message: e.message }, status: 500
+  end
+
   private
 
   def document_params
