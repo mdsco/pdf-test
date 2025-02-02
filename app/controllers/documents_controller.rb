@@ -43,11 +43,10 @@ class DocumentsController < ApplicationController
   def convert_pdf_to_html(document)
     output_dir = 'public/uploads/'
     FileUtils.mkdir_p(output_dir) unless Dir.exist?(output_dir)
-    output_filename = "pdf_#{SecureRandom.hex(5)}.html"
+    output_filename = "pdf_#{DateTime.now().to_i}.html"
     output_path = output_dir.concat(output_filename)
 
     pdf_path = ActiveStorage::Blob.service.path_for(document.file.key)
-    
     command = "pdf2htmlEX --zoom 1.3 #{Shellwords.escape(pdf_path)} #{Shellwords.escape(output_path)}"
     system(command)
 
