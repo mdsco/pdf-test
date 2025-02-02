@@ -4,8 +4,11 @@
 
 import { application } from "./application"
 
-import HelloController from "./hello_controller"
-application.register("hello", HelloController)
+// import PdfViewerController from "./pdf_viewer_controller"
+// application.register("pdf-viewer", PdfViewerController)
 
-import PdfViewerController from "./pdf_viewer_controller"
-application.register("pdf-viewer", PdfViewerController)
+import DragDropController from "./drag_drop_controller"
+application.register("drag-drpo", DragDropController)
+
+import SaveHtmlController from "./save_html_controller"
+application.register("svae-html", SaveHtmlController)

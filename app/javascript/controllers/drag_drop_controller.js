@@ -29,34 +29,36 @@ export default class extends Controller {
 
   dropElement = (event) => {
     if (!this.draggedElement) return;
-
+  
     document.removeEventListener("mousemove", this.moveElement);
     document.removeEventListener("mouseup", this.dropElement);
-
-    // Get the PDF preview container
+  
     const pdfPreview = this.pdfPreviewTarget;
-    const pdfRect = pdfPreview.getBoundingClientRect();
-
-    // Ensure drop is inside the PDF preview
+    const pageContainer = pdfPreview.querySelector("#page-container");
+  
+    if (!pageContainer) {
+      console.error("Page container not found.");
+      this.draggedElement.remove();
+      return;
+    }
+  
+    const pageRect = pageContainer.getBoundingClientRect();
+  
     if (
-      event.pageX >= pdfRect.left &&
-      event.pageX <= pdfRect.right &&
-      event.pageY >= pdfRect.top &&
-      event.pageY <= pdfRect.bottom
+      event.pageX >= pageRect.left &&
+      event.pageX <= pageRect.right &&
+      event.pageY >= pageRect.top &&
+      event.pageY <= pageRect.bottom
     ) {
-      // Adjust position relative to pdf preview
-      this.draggedElement.style.left = `${event.pageX - pdfRect.left}px`;
-      this.draggedElement.style.top = `${event.pageY - pdfRect.top}px`;
-
-
-      // Append inside the PDF preview
-      const page_container = pdfPreview.querySelector('#page-container')
-      page_container.appendChild(this.draggedElement);
+      this.draggedElement.style.left = `${event.pageX - pageRect.left}px`;
+      this.draggedElement.style.top = `${event.pageY - pageRect.top}px`;
+  
+      pageContainer.appendChild(this.draggedElement);
     } else {
       // Remove if dropped outside
       this.draggedElement.remove();
     }
-
+  
     this.draggedElement.style.opacity = "1"; // Reset opacity
     this.draggedElement = null; // Reset dragged element
   };

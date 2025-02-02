@@ -13,24 +13,17 @@
  *= require_tree .
  *= require_self
  */
-/* 
+
 #pdf-html-preview {
-  position: relative;
-} */
+  height: 80vh;
+  overflow-y: auto;
+}
 
 #pdf-html-preview #page-container {
   position: relative;
   padding: 10px 20px;
   width: fit-content;
 }
-
-/* #pdf-html-preview span {
-  position: absolute;
-  background: yellow;
-  padding: 5px;
-  font-weight: bold;
-  cursor: default;
-} */
 
 #toolbox {
   width: 250px;
@@ -52,27 +45,19 @@
 .draggable-field {
   background-color: blue;
   font-size: 16px;
+  font-family: sans-serif;
   color: white;
-  border-color: black;
+  border: none;
   padding: 5px 10px;
   cursor: grab;
-  /* display: block; */
+  border-radius: 3px;
+  display: inline-block;
 }
 
-
-/* #toolbox {
-  border: 1px solid #ccc;
-  padding: 10px;
-  background: #f9f9f9;
-  display: inline-block;
-} */
-
-/* .draggable-field {
-  background: #ddd;
-  display: block;
-  padding: 8px 12px;
-  margin: 5px 0;  
-  border: 1px solid #000;
-  cursor: grab;
-} */
-
+.tagged-document-save {
+  background: white;
+  border-radius: 5px;
+  padding: 10px 30px;
+  margin-top: 5rem;
+  border: 1px solid black;
+}

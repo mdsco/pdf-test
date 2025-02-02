@@ -8,7 +8,9 @@
       <p>TOOLBOX</p>
       <span class="draggable-field signature" data-action="mousedown->drag-drop#startDrag">Signature</span>
       <span class="draggable-field date" data-action="mousedown->drag-drop#startDrag">Date</span>
-      <button data-action="click->save-html#saveHtml" data-save-html-document-id="<%= @document.id %>">Save</button>
+      <div>
+        <button class="tagged-document-save" data-action="click->save-html#saveHtml" data-save-html-document-id="<%= @document.id %>">Save</button>
+      </div>
     </div>
 
     <div id="pdf-html-preview" data-drag-drop-target="pdfPreview" data-save-html-target="pdfPreview">

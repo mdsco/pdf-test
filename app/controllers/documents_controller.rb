@@ -50,6 +50,13 @@ class DocumentsController < ApplicationController
     command = "pdf2htmlEX --zoom 1.3 #{Shellwords.escape(pdf_path)} #{Shellwords.escape(output_path)}"
     system(command)
 
+    if File.exist?(output_path)
+      html_content = File.read(output_path)
+      doc = Nokogiri::HTML(html_content)  
+      doc.css('div#sidebar').remove
+      File.write(output_path, doc.to_html)
+    end
+
     @document.update(html_path: output_filename)
   end
 end
