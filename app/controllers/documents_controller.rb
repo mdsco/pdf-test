@@ -54,6 +54,12 @@ class DocumentsController < ApplicationController
       html_content = File.read(output_path)
       doc = Nokogiri::HTML(html_content)  
       doc.css('div#sidebar').remove
+
+      page_container = doc.at_css('div#page-container')
+      if page_container
+        page_container['style'] = "position: relative; padding: 10px 20px; width: fit-content;"
+      end
+
       File.write(output_path, doc.to_html)
     end
 

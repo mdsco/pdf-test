@@ -19,12 +19,6 @@
   overflow-y: auto;
 }
 
-#pdf-html-preview #page-container {
-  position: relative;
-  padding: 10px 20px;
-  width: fit-content;
-}
-
 #toolbox {
   width: 250px;
   font-size: 22px;
