@@ -22,7 +22,6 @@ export default class extends Controller {
   moveElement = (event) => {
     if (!this.draggedElement) return;
 
-    // Move element to follow cursor
     this.draggedElement.style.left = `${event.pageX}px`;
     this.draggedElement.style.top = `${event.pageY}px`;
   };
@@ -42,24 +41,36 @@ export default class extends Controller {
       return;
     }
   
-    const pageRect = pageContainer.getBoundingClientRect();
+    const pages = pageContainer.querySelectorAll(".pf");
+    let droppedPage = null;
   
-    if (
-      event.pageX >= pageRect.left &&
-      event.pageX <= pageRect.right &&
-      event.pageY >= pageRect.top &&
-      event.pageY <= pageRect.bottom
-    ) {
+    pages.forEach(page => {
+      const pageRect = page.getBoundingClientRect();
+      if (
+        event.pageX >= pageRect.left &&
+        event.pageX <= pageRect.right &&
+        event.pageY >= pageRect.top &&
+        event.pageY <= pageRect.bottom
+      ) {
+        droppedPage = page;
+      }
+    });
+  
+    if (droppedPage) {
+      const pageRect = droppedPage.getBoundingClientRect();
+  
       this.draggedElement.style.left = `${event.pageX - pageRect.left}px`;
       this.draggedElement.style.top = `${event.pageY - pageRect.top}px`;
   
-      pageContainer.appendChild(this.draggedElement);
+      this.draggedElement.style.position = "absolute";
+      this.draggedElement.style.fontSize = "16px";
+      this.draggedElement.style.padding = "5px 10px";
+      droppedPage.appendChild(this.draggedElement);
     } else {
-      // Remove if dropped outside
       this.draggedElement.remove();
     }
   
-    this.draggedElement.style.opacity = "1"; // Reset opacity
-    this.draggedElement = null; // Reset dragged element
+    this.draggedElement.style.opacity = "1";
+    this.draggedElement = null;
   };
 }

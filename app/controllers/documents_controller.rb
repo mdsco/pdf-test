@@ -57,7 +57,7 @@ class DocumentsController < ApplicationController
 
       page_container = doc.at_css('div#page-container')
       if page_container
-        page_container['style'] = "position: relative; padding: 10px 20px; width: fit-content;"
+        page_container['style'] = "position: relative; padding: 10px 20px; width: 850px;"
       end
 
       File.write(output_path, doc.to_html)
